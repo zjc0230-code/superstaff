@@ -323,8 +323,8 @@ def test_run_command_help() -> None:
 )
 def test_help_text_uses_actual_channel_name(channel: str, label: str) -> None:
     text = help_text(channel)
-    assert f"把{label}账号绑定到你的 StaffDeck 账号" in text
-    assert f"解除{label}账号与 StaffDeck 账号的绑定" in text
+    assert f"把{label}账号绑定到你的 SuperStaff 账号" in text
+    assert f"解除{label}账号与 SuperStaff 账号的绑定" in text
 
 
 # ---------- intake 集成 ----------

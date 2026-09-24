@@ -353,7 +353,7 @@ def test_normalize_group_frame() -> None:
     assert inbound.sender_name == "张三"
 
 
-@pytest.mark.parametrize("mention", ["@StaffDeck", "@机器人", "<@bot-id>"])
+@pytest.mark.parametrize("mention", ["@SuperStaff", "@机器人", "<@bot-id>"])
 def test_normalize_group_frame_strips_leading_bot_mention(mention: str) -> None:
     frame = _text_frame(
         chatid="wr_group",
@@ -367,10 +367,10 @@ def test_normalize_group_frame_strips_leading_bot_mention(mention: str) -> None:
 
 def test_normalize_single_frame_preserves_leading_mention() -> None:
     inbound = normalize_wecom_frame(
-        _text_frame(text={"content": "@StaffDeck /帮助"})
+        _text_frame(text={"content": "@SuperStaff /帮助"})
     )
     assert inbound is not None
-    assert inbound.text == "@StaffDeck /帮助"
+    assert inbound.text == "@SuperStaff /帮助"
 
 
 def test_normalize_drops_self_and_invalid_frames() -> None:

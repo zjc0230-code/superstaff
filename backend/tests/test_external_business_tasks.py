@@ -129,10 +129,10 @@ def test_provider_submission_persists_provider_task_id_and_enters_polling(monkey
         assert task.status == "accepted"
         assert task.next_poll_at is not None
         assert _Client.request_headers["Idempotency-Key"] == task.idempotency_key
-        assert _Client.request_headers["X-StaffDeck-Callback-URL"] == (
+        assert _Client.request_headers["X-SuperStaff-Callback-URL"] == (
             f"https://staffdeck.example/api/external-business-tasks/{task.id}/callback"
         )
-        assert _Client.request_headers["X-StaffDeck-Callback-Token"]
+        assert _Client.request_headers["X-SuperStaff-Callback-Token"]
 
 
 def test_provider_submission_rejects_accepted_response_without_task_id(monkeypatch) -> None:

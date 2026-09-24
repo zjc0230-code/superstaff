@@ -21,15 +21,18 @@ def resource_dir() -> Path:
 
 
 def user_data_dir() -> Path:
-    # 环境变量前缀保留 ULTRARAG_（内部标识，不改）；目录名用对外品牌 StaffDeck
-    override = os.environ.get("ULTRARAG_DATA_DIR", "").strip()
+    # 环境变量前缀保留 ULTRARAG_（内部标识，不改）；目录名用对外品牌 SuperStaff（fork 自 StaffDeck）
+    override = (
+        os.environ.get("SUPERSTAFF_DATA_DIR", "").strip()
+        or os.environ.get("ULTRARAG_DATA_DIR", "").strip()
+    )
     if override:
         base = Path(override).expanduser()
     elif sys.platform == "darwin":
-        base = Path.home() / "Library" / "Application Support" / "StaffDeck"
+        base = Path.home() / "Library" / "Application Support" / "SuperStaff"
     elif sys.platform == "win32":
-        base = Path(os.environ.get("APPDATA", Path.home())) / "StaffDeck"
+        base = Path(os.environ.get("APPDATA", Path.home())) / "SuperStaff"
     else:
-        base = Path.home() / ".local" / "share" / "StaffDeck"
+        base = Path.home() / ".local" / "share" / "SuperStaff"
     base.mkdir(parents=True, exist_ok=True)
     return base

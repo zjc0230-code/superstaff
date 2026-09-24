@@ -243,7 +243,7 @@ async def receive_callback(
                 binding.id,
                 open_kfid,
             )
-            raise HTTPException(status_code=403, detail="该客服账号尚未绑定 StaffDeck 渠道")
+            raise HTTPException(status_code=403, detail="该客服账号尚未绑定 SuperStaff 渠道")
         adapter = get_channel_adapter("wechat_kf")
         if not isinstance(adapter, WeChatKfAdapter):
             raise HTTPException(status_code=503, detail="微信客服适配器不可用")

@@ -701,7 +701,7 @@ def _bind_external_identity(
 ) -> str:
     code = (code or "").strip()
     if not code:
-        return "用法：/绑定 <6位绑定码>。绑定码请在 StaffDeck 网页端生成。"
+        return "用法：/绑定 <6位绑定码>。绑定码请在 SuperStaff 网页端生成。"
     external_id = inbound.from_user_id
     scope = external_account_scope(db, binding)
     # 限流:按完整身份键计数,连续错码/过期码达上限后冷却,冷却期内连正确码也拒绝
@@ -717,11 +717,11 @@ def _bind_external_identity(
     ).first()
     if not record or record.used_at is not None or record.expires_at <= now:
         _record_bind_failure(binding.tenant_id, binding.channel, scope, external_id)
-        return "绑定码无效或已过期，请在 StaffDeck 网页端重新生成后再试。"
+        return "绑定码无效或已过期，请在 SuperStaff 网页端重新生成后再试。"
     owner = db.get(User, record.user_id)
     if not owner:
         _record_bind_failure(binding.tenant_id, binding.channel, scope, external_id)
-        return "绑定码无效或已过期，请在 StaffDeck 网页端重新生成后再试。"
+        return "绑定码无效或已过期，请在 SuperStaff 网页端重新生成后再试。"
 
     identity = find_channel_identity(db, binding.tenant_id, binding.channel, external_id, scope)
     old_user_id = identity.staffdeck_user_id if identity else None
@@ -730,12 +730,12 @@ def _bind_external_identity(
         if current and current.source == "web":
             display = current.display_name or current.username
             label = channel_label(binding.channel)
-            return f"该{label}账号已绑定到 StaffDeck 账号「{display}」，请先发送 /解绑 解除后再绑定。"
+            return f"该{label}账号已绑定到 SuperStaff 账号「{display}」，请先发送 /解绑 解除后再绑定。"
 
     if not _claim_bind_code(db, binding, record, code, now):
         db.rollback()
         _record_bind_failure(binding.tenant_id, binding.channel, scope, external_id)
-        return "绑定码无效或已过期，请在 StaffDeck 网页端重新生成后再试。"
+        return "绑定码无效或已过期，请在 SuperStaff 网页端重新生成后再试。"
     _reset_bind_failures(binding.tenant_id, binding.channel, scope, external_id)
 
     # ① 身份指针改指码主账号(无记录则新建);显示名同步为码主账号名,
@@ -760,7 +760,7 @@ def _bind_external_identity(
         _migrate_memories(db, from_user_id=old_user_id, to_user=owner)
     display = owner.display_name or owner.username
     label = channel_label(binding.channel)
-    return f"绑定成功，{label}对话将与你的 StaffDeck 账号「{display}」共享记忆与对话记录。"
+    return f"绑定成功，{label}对话将与你的 SuperStaff 账号「{display}」共享记忆与对话记录。"
 
 
 def _unbind_external_identity(
@@ -774,9 +774,9 @@ def _unbind_external_identity(
     )
     label = channel_label(binding.channel)
     if not current:
-        return f"当前{label}账号未绑定 StaffDeck 账号，无需解绑。"
+        return f"当前{label}账号未绑定 SuperStaff 账号，无需解绑。"
     display = current.display_name or current.username
-    return f"已解绑 StaffDeck 账号「{display}」，后续对话将使用独立的{label}访客身份。"
+    return f"已解绑 SuperStaff 账号「{display}」，后续对话将使用独立的{label}访客身份。"
 
 
 def _send_wechat_typing(
@@ -934,7 +934,7 @@ def _try_handle_feishu_handoff_reply(
             "请以文字内容回复本条通知消息，作为人工答复。",
         )
         return True
-    # assignee 的 StaffDeck 用户 id:从 ChannelIdentity 反查(同 binding scope)。
+    # assignee 的 SuperStaff 用户 id:从 ChannelIdentity 反查(同 binding scope)。
     scope = external_account_scope(db, binding)
     identity = db.exec(
         select(ChannelIdentity).where(
@@ -1013,7 +1013,7 @@ def _run_handoff_reply_command(
     if not assignee_user_id:
         return (
             "未找到待处理的人工转接请求。"
-            "或当前渠道账号未绑定到 StaffDeck 处理人身份。"
+            "或当前渠道账号未绑定到 SuperStaff 处理人身份。"
         )
 
     handoff: HumanHandoffRequest | None = None
@@ -1080,7 +1080,7 @@ def _run_handoff_reply_command(
             != inbound.from_user_id
             or handoff.assignee_user_id != assignee_user_id
         ):
-            # 同时校验通知实际目标与当前 StaffDeck 身份，防止引用或身份变更后越权。
+            # 同时校验通知实际目标与当前 SuperStaff 身份，防止引用或身份变更后越权。
             return "该人工转接请求不是分配给你的，无法代为回复。"
 
     # 策略 2:企业微信没有统一的引用消息字段,按当前绑定下最近一次已投递的
@@ -1415,7 +1415,7 @@ def process_inbound(
             else:
                 leader = get_team_leader(db, team.id)
                 if leader is None:
-                    team_notice = f"团队「{team.name}」暂未设置 TL，请先在 StaffDeck 网页端设置 TL 后再试。"
+                    team_notice = f"团队「{team.name}」暂未设置 TL，请先在 SuperStaff 网页端设置 TL 后再试。"
                 else:
                     team_leader_agent_id = leader.agent_id
             if team_notice is not None:

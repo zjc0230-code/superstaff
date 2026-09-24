@@ -1,9 +1,9 @@
 ---
 name: staffdeck-api-manage-sops
-description: Manage a StaffDeck employee's SOP lifecycle through Open API v1, including listing published SOPs and drafts, generating from source text, rewriting selected fields, replacing or JSON-patching drafts, validating, publishing, archiving, comparing versions, and creating rollback drafts. Use for controlled SOP authoring and release automation.
+description: Manage a SuperStaff employee's SOP lifecycle through Open API v1, including listing published SOPs and drafts, generating from source text, rewriting selected fields, replacing or JSON-patching drafts, validating, publishing, archiving, comparing versions, and creating rollback drafts. Use for controlled SOP authoring and release automation.
 ---
 
-# Manage StaffDeck SOPs
+# Manage SuperStaff SOPs
 
 ## Preserve the draft boundary
 

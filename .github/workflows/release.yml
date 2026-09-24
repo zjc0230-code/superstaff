@@ -174,7 +174,7 @@ jobs:
       - uses: actions/upload-artifact@v7
         with:
           name: staffdeck-${{ matrix.os }}
-          path: packaging/out/StaffDeck-*
+          path: packaging/out/SuperStaff-*
 
   release:
     needs: build
@@ -188,4 +188,4 @@ jobs:
           path: artifacts
       - uses: softprops/action-gh-release@v3
         with:
-          files: artifacts/**/StaffDeck-*
+          files: artifacts/**/SuperStaff-*

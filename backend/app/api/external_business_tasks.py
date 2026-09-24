@@ -100,7 +100,7 @@ def get_external_business_task(
 def external_business_task_callback(
     task_id: str,
     request: ExternalTaskCallback,
-    callback_token: str = Header(default="", alias="X-StaffDeck-Callback-Token"),
+    callback_token: str = Header(default="", alias="X-SuperStaff-Callback-Token"),
     db: Session = Depends(get_session),
 ) -> dict[str, Any]:
     task = db.get(ExternalBusinessTask, task_id)

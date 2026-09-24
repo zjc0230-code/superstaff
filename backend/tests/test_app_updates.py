@@ -14,7 +14,7 @@ def _feed(*entries: tuple[str, str]) -> bytes:
         (
             "<entry>"
             f"<updated>{published_at}</updated>"
-            f'<link rel="alternate" href="https://github.com/OpenBMB/StaffDeck/releases/tag/{tag}" />'
+            f'<link rel="alternate" href="https://github.com/OpenBMB/SuperStaff/releases/tag/{tag}" />'
             f"<title>{tag}</title>"
             "</entry>"
         )
@@ -159,7 +159,7 @@ def test_release_tag_rejects_untrusted_alternate_link() -> None:
 
 
 def test_app_version_priority_and_macos_resources(monkeypatch, tmp_path: Path) -> None:
-    app_root = tmp_path / "StaffDeck.app"
+    app_root = tmp_path / "SuperStaff.app"
     executable = app_root / "Contents" / "MacOS" / "staffdeck"
     resource = app_root / "Contents" / "Resources" / "staffdeck-version.txt"
     executable.parent.mkdir(parents=True)

@@ -396,7 +396,7 @@ def _internal_capability_descriptors() -> list[CapabilityDescriptor]:
             name="external_task_status",
             kind="internal",
             description=(
-                "Query a StaffDeck detached business task by task_id. Use this when the user asks "
+                "Query a SuperStaff detached business task by task_id. Use this when the user asks "
                 "for the status of a previously submitted #taskid. Only the current user's tasks "
                 "are visible."
             ),

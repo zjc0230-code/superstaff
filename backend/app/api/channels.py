@@ -1610,7 +1610,7 @@ def _ensure_wechat_kf_account_binding(
             db.flush()
             existing = None
         else:
-            raise HTTPException(status_code=409, detail="该客服账号已绑定其他 StaffDeck 渠道")
+            raise HTTPException(status_code=409, detail="该客服账号已绑定其他 SuperStaff 渠道")
     if not existing:
         db.add(
             WeChatKfAccount(

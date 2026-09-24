@@ -1,9 +1,9 @@
 ---
 name: staffdeck-api-manage-resources
-description: Manage StaffDeck employee capability resources through Open API v1, including knowledge bases and cited search, general skills, HTTP tools, MCP servers and discovery, resource bindings, capability snapshots, and scheduled tasks. Use for adding, testing, publishing, binding, diagnosing, or scheduling an employee's executable capabilities.
+description: Manage SuperStaff employee capability resources through Open API v1, including knowledge bases and cited search, general skills, HTTP tools, MCP servers and discovery, resource bindings, capability snapshots, and scheduled tasks. Use for adding, testing, publishing, binding, diagnosing, or scheduling an employee's executable capabilities.
 ---
 
-# Manage StaffDeck capability resources
+# Manage SuperStaff capability resources
 
 ## Inspect before writing
 

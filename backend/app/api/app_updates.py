@@ -15,9 +15,9 @@ from app.version import app_version, update_check_enabled
 
 router = APIRouter(prefix="/api/app", tags=["app"])
 
-RELEASES_FEED_URL = "https://github.com/OpenBMB/StaffDeck/releases.atom"
-RELEASES_PAGE_URL = "https://github.com/OpenBMB/StaffDeck/releases"
-RELEASE_TAG_PATH = "/OpenBMB/StaffDeck/releases/tag/"
+RELEASES_FEED_URL = "https://github.com/OpenBMB/SuperStaff/releases.atom"
+RELEASES_PAGE_URL = "https://github.com/OpenBMB/SuperStaff/releases"
+RELEASE_TAG_PATH = "/OpenBMB/SuperStaff/releases/tag/"
 SUCCESS_CACHE_SECONDS = 6 * 60 * 60
 FAILURE_CACHE_SECONDS = 15 * 60
 
@@ -130,7 +130,7 @@ def _fetch_version() -> AppVersionRead:
     try:
         response = httpx.get(
             RELEASES_FEED_URL,
-            headers={"Accept": "application/atom+xml", "User-Agent": "StaffDeck"},
+            headers={"Accept": "application/atom+xml", "User-Agent": "SuperStaff"},
             timeout=4.0,
             follow_redirects=True,
         )

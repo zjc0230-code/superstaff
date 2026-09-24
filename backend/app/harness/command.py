@@ -662,9 +662,9 @@ def _windows_powershell_command(command: str) -> str:
         python_path = str(runtime / "python.exe").replace("'", "''")
         runtime_alias = (
             f"$staffdeckPython = '{python_path}'\n"
-            "function Invoke-StaffDeckPython { & $staffdeckPython @args }\n"
-            "Set-Alias -Name python -Value Invoke-StaffDeckPython\n"
-            "Set-Alias -Name python3 -Value Invoke-StaffDeckPython\n"
+            "function Invoke-SuperStaffPython { & $staffdeckPython @args }\n"
+            "Set-Alias -Name python -Value Invoke-SuperStaffPython\n"
+            "Set-Alias -Name python3 -Value Invoke-SuperStaffPython\n"
         )
     script = (
         "$OutputEncoding = [System.Text.UTF8Encoding]::new($false)\n"

@@ -557,7 +557,7 @@ def test_bind_success_migrates_history_and_marks_code_used() -> None:
 
     notices = _notice_texts(engine)
     assert any(
-        "绑定成功，微信对话将与你的 StaffDeck 账号「张三」共享记忆与对话记录。" == text
+        "绑定成功，微信对话将与你的 SuperStaff 账号「张三」共享记忆与对话记录。" == text
         for text in notices
     )
 
@@ -1018,7 +1018,7 @@ def test_wecom_bind_success_full_chain() -> None:
 
     notices = _notice_texts(engine)
     assert any(
-        "绑定成功，企业微信对话将与你的 StaffDeck 账号「张三」共享记忆与对话记录。" == text
+        "绑定成功，企业微信对话将与你的 SuperStaff 账号「张三」共享记忆与对话记录。" == text
         for text in notices
     )
 
@@ -1166,7 +1166,7 @@ def test_bind_failure_throttle_cooldown_and_recovery() -> None:
             is False
         )
     notices = _notice_texts(engine)
-    assert notices[-1] == "绑定码无效或已过期，请在 StaffDeck 网页端重新生成后再试。"
+    assert notices[-1] == "绑定码无效或已过期，请在 SuperStaff 网页端重新生成后再试。"
     assert len(notices) == 5
 
     # 第 6 次(即使是正确码):冷却期拒绝

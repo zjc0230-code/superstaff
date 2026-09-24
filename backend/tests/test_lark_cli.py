@@ -165,7 +165,7 @@ def test_wire_form_dates_normalized_to_rfc3339() -> None:
             "value": [
                 {"id": "t", "type": "radioV2", "value": "7678264870298471375"},
                 {"id": "s", "type": "date", "value": "2026-08-27 00:00"},
-                {"id": "r", "type": "textarea", "value": "StaffDeck测试"},
+                {"id": "r", "type": "textarea", "value": "SuperStaff测试"},
             ],
         }
     ]
@@ -178,7 +178,7 @@ def test_wire_form_dates_normalized_to_rfc3339() -> None:
     assert "T" in expected and expected != "2026-08-27 00:00"
     # 非日期控件不动；原始输入不被就地修改。
     assert sent[0]["value"] == "7678264870298471375"
-    assert sent[2]["value"] == "StaffDeck测试"
+    assert sent[2]["value"] == "SuperStaff测试"
     assert form[0]["value"][1]["value"] == "2026-08-27 00:00"
 
 

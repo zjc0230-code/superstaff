@@ -18,7 +18,7 @@ from urllib.parse import urlsplit
 
 from app.version import app_version
 
-APP_NAME = "StaffDeck"
+APP_NAME = "SuperStaff"
 APP_ID = "ai.staffdeck.desktop"
 APP_VERSION = app_version()
 NETWORK_MODES = {"local", "lan", "public"}
@@ -139,7 +139,7 @@ def _apply_network_config(argv: list[str]) -> list[str]:
 
 
 def _setup_network(argv: list[str]) -> int:
-    parser = argparse.ArgumentParser(prog="staffdeck setup", description="配置 StaffDeck 网络访问方式")
+    parser = argparse.ArgumentParser(prog="staffdeck setup", description="配置 SuperStaff 网络访问方式")
     parser.add_argument("--mode", choices=sorted(NETWORK_MODES), help="local、lan 或 public")
     parser.add_argument("--port", type=int, default=5173)
     parser.add_argument("--public-url", default="")
@@ -336,12 +336,12 @@ def _open_browser_when_ready(url: str) -> None:
 
 
 def _open_browser(target: str) -> None:
-    """Open StaffDeck in the system browser on platforms without an embedded window."""
+    """Open SuperStaff in the system browser on platforms without an embedded window."""
     webbrowser.open(target)
 
 
 def _is_external_web_url(target: str, local_url: str) -> bool:
-    """Return whether a web URL should leave the embedded StaffDeck window."""
+    """Return whether a web URL should leave the embedded SuperStaff window."""
     target_parts = urlsplit(target)
     local_parts = urlsplit(local_url)
     if target_parts.scheme not in {"http", "https"} or not target_parts.hostname:
@@ -455,7 +455,7 @@ def _create_macos_webview_window(AppKit, Foundation, WebKit, target: str):
     global _MACOS_WINDOW_CLASS
     if _MACOS_WINDOW_CLASS is None:
 
-        class StaffDeckWindow(AppKit.NSWindow):
+        class SuperStaffWindow(AppKit.NSWindow):
             def sendEvent_(self, event):  # noqa: N802
                 if event.type() == AppKit.NSEventTypeLeftMouseDown:
                     location = event.locationInWindow()
@@ -472,11 +472,11 @@ def _create_macos_webview_window(AppKit, Foundation, WebKit, target: str):
                             self.performWindowDragWithEvent_(event)
                         return
                 if objc_super is not None:
-                    objc_super(StaffDeckWindow, self).sendEvent_(event)
+                    objc_super(SuperStaffWindow, self).sendEvent_(event)
                 else:
                     AppKit.NSWindow.sendEvent_(self, event)
 
-        _MACOS_WINDOW_CLASS = StaffDeckWindow
+        _MACOS_WINDOW_CLASS = SuperStaffWindow
 
     style = (
         AppKit.NSWindowStyleMaskTitled
@@ -506,7 +506,7 @@ def _create_macos_webview_window(AppKit, Foundation, WebKit, target: str):
     webview.setAutoresizingMask_(AppKit.NSViewWidthSizable | AppKit.NSViewHeightSizable)
     page_url = Foundation.NSURL.URLWithString_(target)
     if page_url is None:
-        raise RuntimeError(f"Invalid StaffDeck window URL: {target!r}")
+        raise RuntimeError(f"Invalid SuperStaff window URL: {target!r}")
     webview.loadRequest_(Foundation.NSURLRequest.requestWithURL_(page_url))
     window.setContentView_(webview)
 
@@ -551,7 +551,7 @@ def _create_macos_main_menu(AppKit, app_delegate):
     app_menu.addItem_(AppKit.NSMenuItem.separatorItem())
 
     quit_item = AppKit.NSMenuItem.alloc().initWithTitle_action_keyEquivalent_(
-        f"退出 {APP_NAME}", "quitStaffDeck:", "q"
+        f"退出 {APP_NAME}", "quitSuperStaff:", "q"
     )
     quit_item.setTarget_(app_delegate)
     app_menu.addItem_(quit_item)
@@ -651,7 +651,7 @@ def _run_macos_dock_app(cfg: dict, url: str) -> int:
             self.dock_context_menu, self.dock_context_dock_item = self._build_control_menu()
             return self.dock_context_menu
 
-        def openStaffDeck_(self, _sender):  # noqa: N802
+        def openSuperStaff_(self, _sender):  # noqa: N802
             self.showMainWindow_(url + "/chat/")
 
         def showMainWindow_(self, target):
@@ -668,7 +668,7 @@ def _run_macos_dock_app(cfg: dict, url: str) -> int:
                 self.main_window.makeKeyAndOrderFront_(None)
             AppKit.NSApplication.sharedApplication().activateIgnoringOtherApps_(True)
 
-        def restartStaffDeck_(self, _sender):  # noqa: N802
+        def restartSuperStaff_(self, _sender):  # noqa: N802
             os.execv(sys.executable, [sys.executable] + sys.argv[1:])
 
         def toggleDockIcon_(self, _sender):  # noqa: N802
@@ -692,7 +692,7 @@ def _run_macos_dock_app(cfg: dict, url: str) -> int:
             alert.addButtonWithTitle_("好")
             alert.runModal()
 
-        def quitStaffDeck_(self, _sender):  # noqa: N802
+        def quitSuperStaff_(self, _sender):  # noqa: N802
             AppKit.NSApplication.sharedApplication().terminate_(self)
 
         def _start_server(self) -> None:
@@ -740,13 +740,13 @@ def _run_macos_dock_app(cfg: dict, url: str) -> int:
             menu.addItem_(self._menu_item(f"版本：{APP_VERSION}", enabled=False))
             menu.addItem_(self._menu_item(f"端口：{cfg['port']}", enabled=False))
             menu.addItem_(AppKit.NSMenuItem.separatorItem())
-            menu.addItem_(self._menu_item(f"打开 {APP_NAME}", "openStaffDeck:"))
-            menu.addItem_(self._menu_item("重启服务", "restartStaffDeck:"))
+            menu.addItem_(self._menu_item(f"打开 {APP_NAME}", "openSuperStaff:"))
+            menu.addItem_(self._menu_item("重启服务", "restartSuperStaff:"))
             dock_item = self._menu_item(self._dock_toggle_title(), "toggleDockIcon:")
             menu.addItem_(dock_item)
             menu.addItem_(AppKit.NSMenuItem.separatorItem())
             menu.addItem_(self._menu_item(f"关于 {APP_NAME}", "showAbout:"))
-            menu.addItem_(self._menu_item(f"退出 {APP_NAME}", "quitStaffDeck:"))
+            menu.addItem_(self._menu_item(f"退出 {APP_NAME}", "quitSuperStaff:"))
             return menu, dock_item
 
         def _install_status_menu(self) -> None:
@@ -785,7 +785,7 @@ def _run_macos_dock_app(cfg: dict, url: str) -> int:
 
 
 def _run_windows_taskbar_app(cfg: dict, url: str) -> int:
-    """Run the server behind a native window so StaffDeck owns a taskbar icon."""
+    """Run the server behind a native window so SuperStaff owns a taskbar icon."""
     import ctypes
     from ctypes import wintypes
 
@@ -890,7 +890,7 @@ def _run_windows_taskbar_app(cfg: dict, url: str) -> int:
         return user32.DefWindowProcW(hwnd, message, wparam, lparam)
 
     instance = kernel32.GetModuleHandleW(None)
-    class_name = "StaffDeckDesktopWindow"
+    class_name = "SuperStaffDesktopWindow"
     window_class = WNDCLASSW()
     window_class.lpfnWndProc = window_proc
     window_class.hInstance = instance

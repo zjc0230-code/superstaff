@@ -1367,7 +1367,7 @@ def test_confirm_discovery_api_returns_422_for_invalid_skill() -> None:
             confirm_discovery_api(suggestion.id, "tenant_demo", db, user)
 
         assert getattr(exc_info.value, "status_code", None) == 422
-        assert "StaffDeck SkillCard" in str(getattr(exc_info.value, "detail", ""))
+        assert "SuperStaff SkillCard" in str(getattr(exc_info.value, "detail", ""))
 
 
 def test_confirm_discovery_api_returns_409_for_non_pending_status() -> None:

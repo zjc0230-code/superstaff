@@ -1,9 +1,9 @@
 ---
 name: staffdeck-api-run-agent
-description: Run a StaffDeck digital employee through Open API v1, create or continue sessions, submit stateful or stateless runs, poll durable jobs, stream SSE events, continue awaiting-input SOPs, cancel work, and download Harness artifacts. Use whenever another agent must invoke a StaffDeck employee and return auditable results with citations and tool activity.
+description: Run a SuperStaff digital employee through Open API v1, create or continue sessions, submit stateful or stateless runs, poll durable jobs, stream SSE events, continue awaiting-input SOPs, cancel work, and download Harness artifacts. Use whenever another agent must invoke a SuperStaff employee and return auditable results with citations and tool activity.
 ---
 
-# Run a StaffDeck agent
+# Run a SuperStaff agent
 
 ## Prepare
 

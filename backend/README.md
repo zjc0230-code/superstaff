@@ -43,7 +43,7 @@ python3 packaging/fetch_sandbox_runtime.py packaging/sandbox_runtime
 ```
 
 The bootstrap uses the committed dependency lock and `npm ci`, verifies the
-downloaded Node archive, and applies StaffDeck's reviewed unrestricted-network
+downloaded Node archive, and applies SuperStaff's reviewed unrestricted-network
 compatibility patch. The repository-local runtime takes precedence over a
 global `srt` installation. Unreviewed global installations are ignored unless
 development explicitly sets `STAFFDECK_ALLOW_GLOBAL_SRT=true`; normal

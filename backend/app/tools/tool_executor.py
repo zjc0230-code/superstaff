@@ -399,7 +399,7 @@ class ToolExecutor:
                     ),
                     "tenant_id": tool.tenant_id,
                     "guidance": (
-                        "Use external_task_status with this StaffDeck task_id to query the "
+                        "Use external_task_status with this SuperStaff task_id to query the "
                         "existing task. Do not invoke the submission tool again to check status."
                     ),
                 },

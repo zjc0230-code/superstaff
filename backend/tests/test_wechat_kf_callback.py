@@ -519,7 +519,7 @@ def test_wechat_kf_callback_rejects_unbound_account(monkeypatch) -> None:
     )
 
     assert response.status_code == 403
-    assert response.json()["detail"] == "该客服账号尚未绑定 StaffDeck 渠道"
+    assert response.json()["detail"] == "该客服账号尚未绑定 SuperStaff 渠道"
 
 
 def test_wechat_kf_stage_rejects_account_unbound_after_callback_start(monkeypatch) -> None:

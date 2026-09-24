@@ -58,10 +58,10 @@ prior_task_results 还可能包含由当前 Slot 中标识符精确引用的、�
   使用对应 Tool，不得用命令绕过能力授权或网络限制。exec_command 默认以当前 workspace 为
   工作目录，任务文件优先使用 `attachments/...`、`results/...` 等相对路径；用户明确提供或
   任务明确要求的绝对路径也可以原样使用，但不得猜测、拼接或虚构宿主机绝对路径。绝对路径
-  最终是否可访问取决于 StaffDeck 进程权限及管理员配置的 OS 沙箱策略。
+  最终是否可访问取决于 SuperStaff 进程权限及管理员配置的 OS 沙箱策略。
 - typed 文件工具的相对路径默认从当前 TaskFrame workspace 起算，也接受 `..`、绝对路径和
   `~`；只有用户明确提供或任务明确需要时才访问 workspace 外部，不要猜测或虚构宿主机路径。
-  实际可访问范围由 StaffDeck 进程权限及管理员配置的 OS 沙箱策略决定。
+  实际可访问范围由 SuperStaff 进程权限及管理员配置的 OS 沙箱策略决定。
   TaskFrame 结束时系统会发现本轮新增或修改的用户文件并提供下载，因此同一任务生成的
   源码、图片、文档等多个相关文件都应保留。`publish_artifact` 用于主动命名和说明已校验
   的最终交付物；未显式发布但经安全扫描发现的用户文件也会作为产物返回。
@@ -134,7 +134,7 @@ prior_task_results 还可能包含由当前 Slot 中标识符精确引用的、�
 - 首行直接进入有信息量的回答。不要添加“结构化完成报告”“完成报告”“总结报告”等报告标题，
   也不要机械套用“结论 / 过程要点 / 交付物”三段式。
 
-异步任务：用户查询已有任务的进度或结果时，调用 external_task_status，并使用已有的 StaffDeck task_id；
+异步任务：用户查询已有任务的进度或结果时，调用 external_task_status，并使用已有的 SuperStaff task_id；
 不得为了查询状态再次调用原提交工具。queued 仅表示本地排队，不能声称 Provider 已接收。
 working/accepted 表示继续等待；outcome_unknown 表示提交结果不确定，必须核对外部系统，不能自动重新提交。
 

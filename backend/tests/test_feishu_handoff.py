@@ -2036,7 +2036,7 @@ def test_run_handoff_reply_command_matches_by_identity(monkeypatch) -> None:
 
 
 def test_run_handoff_reply_command_rejects_without_identity() -> None:
-    """发送者无 ChannelIdentity(未绑定 StaffDeck 身份)时拒绝,不再用 contact_target 模糊匹配。"""
+    """发送者无 ChannelIdentity(未绑定 SuperStaff 身份)时拒绝,不再用 contact_target 模糊匹配。"""
     import app.channels.service_intake as intake_mod
     from app.channels.service_intake import _run_handoff_reply_command
     from app.channels.service_routing import ChannelCommand

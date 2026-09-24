@@ -104,7 +104,7 @@ class AccountAPICredentialCreated(AccountAPICredentialRead):
     api_key: str
 
 
-ACCOUNT_API_CLIENT_PREFIX = "StaffDeck 账号全量 API"
+ACCOUNT_API_CLIENT_PREFIX = "SuperStaff 账号全量 API"
 
 
 @router.post("/login", response_model=LoginResponse)

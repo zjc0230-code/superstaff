@@ -32,8 +32,8 @@ PERSISTED_TERMINAL_STATUSES = {
     "outcome_unknown",
 }
 PROVIDER_TASK_STRATEGY = "provider_task"
-CALLBACK_URL_HEADER = "X-StaffDeck-Callback-URL"
-CALLBACK_TOKEN_HEADER = "X-StaffDeck-Callback-Token"
+CALLBACK_URL_HEADER = "X-SuperStaff-Callback-URL"
+CALLBACK_TOKEN_HEADER = "X-SuperStaff-Callback-Token"
 IDEMPOTENCY_HEADER = "Idempotency-Key"
 logger = logging.getLogger(__name__)
 
@@ -264,7 +264,7 @@ def poll_due_external_tasks(db: Session) -> int:
                 "code": "DETACHED_OUTCOME_UNKNOWN",
                 "message": (
                     "The worker stopped after the external request may have been sent; "
-                    "StaffDeck will not replay a potentially non-idempotent request."
+                    "SuperStaff will not replay a potentially non-idempotent request."
                 ),
             }
             task.finished_at = now

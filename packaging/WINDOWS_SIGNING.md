@@ -1,6 +1,6 @@
 # Windows code signing
 
-StaffDeck uses Authenticode signing for the packaged application, the bundled
+SuperStaff uses Authenticode signing for the packaged application, the bundled
 Node/SRT executables, the Inno Setup uninstaller, and the final installer.
 Signing is required for any package distributed to another Windows machine.
 
@@ -58,6 +58,6 @@ service and can be overridden when required.
 
 When no certificate or external signer is configured, the build continues and
 marks the output as `UNSIGNED`. On Windows hosts where application-control
-policy blocks the bundled SRT, StaffDeck will show a high-risk degraded mode
+policy blocks the bundled SRT, SuperStaff will show a high-risk degraded mode
 and execute without SRT. Configure a trusted signer for production deployments
 to preserve process and filesystem isolation.

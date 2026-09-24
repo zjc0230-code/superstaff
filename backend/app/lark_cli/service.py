@@ -108,7 +108,7 @@ def invoke_lark_cli(
     if not user_key:
         return _precondition_failure(
             "LARK_CLI_USER_UNRESOLVED",
-            "当前会话没有可用的 StaffDeck 用户身份，无法定位该用户的飞书登录态。",
+            "当前会话没有可用的 SuperStaff 用户身份，无法定位该用户的飞书登录态。",
         )
     credential_error, app_id, app_secret = _resolve_app_credentials(db, tenant_id, agent_id)
     if credential_error is not None:

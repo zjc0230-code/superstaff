@@ -213,10 +213,10 @@ def test_parse_toplevel_code_block_hash_comment_not_heading():
 
 
 def test_parse_link():
-    blocks = parse_markdown("[StaffDeck](https://staffdeck.ai)")
+    blocks = parse_markdown("[SuperStaff](https://staffdeck.ai)")
     spans = blocks[0].spans
     link = next(s for s in spans if s.href)
-    assert link.text == "StaffDeck"
+    assert link.text == "SuperStaff"
     assert link.href == "https://staffdeck.ai"
 
 

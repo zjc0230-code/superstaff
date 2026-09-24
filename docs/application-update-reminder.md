@@ -1,13 +1,13 @@
 # Application update reminder
 
-StaffDeck desktop builds perform a best-effort check for newer GitHub releases after a user
+SuperStaff desktop builds perform a best-effort check for newer GitHub releases after a user
 signs in and completes the first-run guides. The feature only displays a reminder; it never
 downloads or installs an update.
 
 ## Runtime behavior
 
 `GET /api/app/version` returns the current application version and the newest compatible release
-from `https://github.com/OpenBMB/StaffDeck/releases.atom`. A stable build ignores prereleases. A
+from `https://github.com/OpenBMB/SuperStaff/releases.atom`. A stable build ignores prereleases. A
 prerelease build may advance to a newer prerelease or a stable release.
 
 Successful checks are cached for six hours and failed checks for fifteen minutes. Network,
@@ -22,9 +22,9 @@ does not repeat the same version:
 staffdeck_update_reminded_version
 ```
 
-The release URL is accepted only when it is an HTTPS GitHub URL under the StaffDeck release-tag
-path. Packaged macOS builds hand external links from the embedded StaffDeck window to the system
-browser. Other platforms already display StaffDeck in the system browser.
+The release URL is accepted only when it is an HTTPS GitHub URL under the SuperStaff release-tag
+path. Packaged macOS builds hand external links from the embedded SuperStaff window to the system
+browser. Other platforms already display SuperStaff in the system browser.
 
 Update comparison compatibility is guaranteed from the `0.2.0` stable release onward. Historical
 `0.12-beta.*` development builds predate that version line and are not supported as update-check
@@ -64,6 +64,6 @@ VERSION=v0.2.0 bash packaging/build_macos.sh
 3. Confirm the toast identifies the current and latest versions and links to the matching trusted
    GitHub release.
 4. Close the toast and refresh. Confirm the same release is not shown again.
-5. Test while offline and confirm the rest of StaffDeck remains usable.
+5. Test while offline and confirm the rest of SuperStaff remains usable.
 6. Test a stable current version against a feed containing only prereleases and confirm no update
    is offered.

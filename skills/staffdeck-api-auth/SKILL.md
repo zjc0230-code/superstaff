@@ -1,9 +1,9 @@
 ---
 name: staffdeck-api-auth
-description: Authenticate to StaffDeck Open API v1, inspect the current credential boundary, list accessible agents, browse the gallery, add a gallery agent, or bootstrap API clients and credentials. Use for StaffDeck API key setup, authorization failures, agent selection, scope checks, and cross-agent access questions.
+description: Authenticate to SuperStaff Open API v1, inspect the current credential boundary, list accessible agents, browse the gallery, add a gallery agent, or bootstrap API clients and credentials. Use for SuperStaff API key setup, authorization failures, agent selection, scope checks, and cross-agent access questions.
 ---
 
-# StaffDeck API authentication
+# SuperStaff API authentication
 
 Use the API credential supplied by the user. Never print, persist, commit, or place a plaintext key in a command argument when an environment variable or secret store is available.
 

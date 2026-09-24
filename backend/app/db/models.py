@@ -934,7 +934,7 @@ class ChannelBinding(SQLModel, table=True):
 
 
 class WeChatKfAccount(SQLModel, table=True):
-    """客服账号到 StaffDeck 路由的映射；一个 API binding 可管理多个账号。"""
+    """客服账号到 SuperStaff 路由的映射；一个 API binding 可管理多个账号。"""
 
     __tablename__ = "wechat_kf_accounts"
     __table_args__ = (
